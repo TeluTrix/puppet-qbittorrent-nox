@@ -31,6 +31,11 @@ class qbittorrent_nox::config (
 ) {
   $webui_password_pbkdf2 = str2saltedpbkdf2($password, 'sha512', 4096, 16, 64)
 
+  file { $filelogger_path:
+    ensure => 'directory',
+    owner  => $qbittorrent_nox::system_user,
+  }
+
   file { "/home/${qbittorrent_nox::system_user}/.config/qBittorrent/qBittorrent.conf":
     ensure  => 'file',
     owner   => $qbittorrent_nox::system_user,
