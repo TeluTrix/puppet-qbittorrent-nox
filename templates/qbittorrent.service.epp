@@ -1,0 +1,13 @@
+[Unit]
+Description=<%= $qbittorrent_nox::service::description %>
+After=<%= $qbittorrent_nox::service::after %>
+
+[Service]
+ExecStart=<%= $qbittorrent_nox::service::exec_start %>
+Type=<%= $qbittorrent_nox::service::type %>
+Restart=<%= $qbittorrent_nox::service::restart %>
+
+
+[Install]
+WantedBy=<%= $qbittorrent_nox::service::wanted_by %>
+RequiredBy=<%= $qbittorrent_nox::service::required_by %>

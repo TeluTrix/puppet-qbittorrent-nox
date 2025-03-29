@@ -1,0 +1,38 @@
+<%- | Optional[String]  $password,
+| -%>
+[Application]
+FileLogger\Age=<%= $qbittorrent_nox::config::filelogger_age %>
+FileLogger\AgeType=<%= $qbittorrent_nox::config::filelogger_age_type %>
+FileLogger\Backup=<%= $qbittorrent_nox::config::filelogger_backup %>
+FileLogger\DeleteOld=<%= $qbittorrent_nox::config::filelogger_delete_old %>
+FileLogger\Enabled=<%= $qbittorrent_nox::config::filelogger_enabled %>
+FileLogger\MaxSizeBytes=<%= $qbittorrent_nox::config::filelogger_max_size_bytes %>
+FileLogger\Path=<%= $qbittorrent_nox::config::filelogger_path %>
+
+[BitTorrent]
+Session\DefaultSavePath=<%= $qbittorrent_nox::config::session_default_save_path %>
+Session\ExcludedFileNames=<%= $qbittorrent_nox::config::session_exclude_file_names %>
+Session\MaxActiveDownloads=<%= $qbittorrent_nox::config::session_max_active_downlaods %>
+Session\MaxActiveTorrents=<%= $qbittorrent_nox::config::session_max_active_torrents %>
+Session\MaxActiveUploads=<%= $qbittorrent_nox::config::session_max_active_uploads %>
+Session\Port=<%= $qbittorrent_nox::config::session_port %>
+Session\QueueingSystemEnabled=<%= $qbittorrent_nox::config::session_queueing_system_enabled %>
+
+[Core]
+AutoDeleteAddedTorrentFile=Never
+
+[LegalNotice]
+Accepted=<%= $qbittorrent_nox::config::legal_notice_accepted %>
+
+[Meta]
+MigrationVersion=<%= $qbittorrent_nox::config::meta_migration_version %>
+
+[Preferences]
+General\Locale=<%= $qbittorrent_nox::config::general_locale %>
+MailNotification\req_auth=<%= $qbittorrent_nox::config::mail_notification_req_auth %>
+WebUI\AuthSubnetWhitelist=<%= $qbittorrent_nox::config::webui_auth_subnet_whitelist %>
+WebUI\Password_PBKDF2="@ByteArray(<%= $password %>)"
+
+[RSS]
+AutoDownloader\DownloadRepacks=<%= $qbittorrent_nox::config::auto_downloader_download_repacks %>
+AutoDownloader\SmartEpisodeFilter=<%= $qbittorrent_nox::config::auto_downloader_smart_episode_filter %>
