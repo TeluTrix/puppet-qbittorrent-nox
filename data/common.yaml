@@ -1,1 +1,37 @@
---- {}
+---
+
+qbittorrent_nox::ensure: 'present'
+qbittorrent_nox::system_user: 'qbittorrent'
+
+qbittorrent_nox::config::filelogger_age: 1
+qbittorrent_nox::config::filelogger_age_type: 1
+qbittorrent_nox::config::filelogger_backup: true
+qbittorrent_nox::config::filelogger_delete_old: true
+qbittorrent_nox::config::filelogger_enabled: true
+qbittorrent_nox::config::filelogger_max_size_bytes: 66560
+qbittorrent_nox::config::filelogger_path: '/var/log/qbittorrent'
+qbittorrent_nox::config::session_default_save_path: '/downloads'
+qbittorrent_nox::config::session_exclude_file_names: ''
+qbittorrent_nox::config::session_max_active_downlaods: 5
+qbittorrent_nox::config::session_max_active_torrents: 5
+qbittorrent_nox::config::session_max_active_uploads: 5
+qbittorrent_nox::config::session_port: 55733
+qbittorrent_nox::config::session_queueing_system_enabled: true
+qbittorrent_nox::config::auto_delete_added_torrent_file: 'Never'
+qbittorrent_nox::config::legal_notice_accepted: true
+qbittorrent_nox::config::meta_migration_version: 6
+qbittorrent_nox::config::general_locale: 'en'
+qbittorrent_nox::config::mail_notification_req_auth: true
+qbittorrent_nox::config::webui_auth_subnet_whitelist: '@Invalid()'
+qbittorrent_nox::config::password: 'password'
+qbittorrent_nox::config::auto_downloader_download_repacks: true
+qbittorrent_nox::config::auto_downloader_smart_episode_filter: 's(\\d+)e(\\d+), (\\d+)x(\\d+), "(\\d{4}[.\\-\\d{1,2}[.\\-\\d{1,2})", "(\\d{1,2}[.\\-\\d{1,2}[.\\-\\d{4})"'
+
+qbittorrent_nox::service::ensure: 'running'
+qbittorrent_nox::service::description: 'qBittorrent Service'
+qbittorrent_nox::service::after: 'network.target'
+qbittorrent_nox::service::exec_start: '/bin/qbittorrent-nox'
+qbittorrent_nox::service::type: 'simple'
+qbittorrent_nox::service::restart: 'always'
+qbittorrent_nox::service::wanted_by: 'default.target'
+qbittorrent_nox::service::required_by: 'network.target'

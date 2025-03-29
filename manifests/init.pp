@@ -5,8 +5,8 @@
 # @example
 #   include qbittorrent_nox
 class qbittorrent_nox (
-  Enum['present', 'absent'] $ensure = 'present',
-  String  $system_user = 'qbittorrent',
+  Enum['present', 'absent'] $ensure,
+  String  $system_user,
 ) {
   package { 'epel-release':
     ensure => $ensure,
@@ -17,7 +17,7 @@ class qbittorrent_nox (
     require => Package['epel-release'],
   }
 
-  user { 'qbittorrent':
+  user { $system_user:
     ensure => $ensure,
   }
 
