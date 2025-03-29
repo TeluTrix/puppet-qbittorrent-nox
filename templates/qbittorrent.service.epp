@@ -6,6 +6,7 @@ After=<%= $qbittorrent_nox::service::after %>
 ExecStart=<%= $qbittorrent_nox::service::exec_start %>
 Type=<%= $qbittorrent_nox::service::type %>
 Restart=<%= $qbittorrent_nox::service::restart %>
+User=<%= $qbittorrent_nox::system_user %>
 
 
 [Install]
