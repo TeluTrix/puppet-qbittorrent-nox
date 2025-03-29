@@ -8,6 +8,9 @@ class qbittorrent_nox (
   Enum['present', 'absent'] $ensure,
   String  $system_user,
 ) {
+  include qbittorrent_nox::config
+  include qbittorrent_nox::service
+
   package { 'epel-release':
     ensure => $ensure,
   }
