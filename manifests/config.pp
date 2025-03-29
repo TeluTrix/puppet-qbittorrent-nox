@@ -30,7 +30,18 @@ class qbittorrent_nox::config (
   Boolean $auto_downloader_download_repacks,
   String  $auto_downloader_smart_episode_filter,
 ) {
-  $webui_password_pbkdf2 = str2saltedpbkdf2($password, $password_salt, 50000)
+  $salt = SecureRandom.uuid
+  $password_bytes = $plaintext_password.encode('UTF-8')
+  $salt_bytes = $salt.bytes
+
+  $iterations = 100000
+  $dklen = 64
+  $hashed_password = inline_template('<%= OpenSSL::PKCS5.pbkdf2_hmac($password_bytes, $salt_bytes, $iterations, $dklen, "sha512").unpack("H*").first %>')
+
+  $b64_salt = Base64.encode64($salt_bytes.pack('C*')).strip
+  $b64_password = Base64.encode64([$hashed_password].pack('H*')).strip
+
+  $password_string = "@ByteArray(${b64_salt}:${b64_password})"
 
   file { $filelogger_path:
     ensure => 'directory',
@@ -41,7 +52,7 @@ class qbittorrent_nox::config (
     ensure  => 'file',
     owner   => $qbittorrent_nox::system_user,
     content => epp('qbittorrent_nox/qBittorrent.conf.epp', {
-        'password'  => "@ByteArray(${webui_password_pbkdf2['salt_hex']}:${webui_password_pbkdf2['password_hex']}",
+        'password'  => $password_string,
     }),
   }
 }
