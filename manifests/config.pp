@@ -26,10 +26,11 @@ class qbittorrent_nox::config (
   Boolean $mail_notification_req_auth,
   String  $webui_auth_subnet_whitelist,
   String  $password,
+  String  $password_salt,
   Boolean $auto_downloader_download_repacks,
   String  $auto_downloader_smart_episode_filter,
 ) {
-  $webui_password_pbkdf2 = str2saltedpbkdf2($password, 'sha512', 4096, 16, 64)
+  $webui_password_pbkdf2 = str2saltedpbkdf2($password, $password_salt, 50000)
 
   file { $filelogger_path:
     ensure => 'directory',

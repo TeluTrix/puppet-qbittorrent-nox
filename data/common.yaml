@@ -24,6 +24,7 @@ qbittorrent_nox::config::general_locale: 'en'
 qbittorrent_nox::config::mail_notification_req_auth: true
 qbittorrent_nox::config::webui_auth_subnet_whitelist: '@Invalid()'
 qbittorrent_nox::config::password: 'password'
+qbittorrent_nox::config::password_salt: 'some_salt'
 qbittorrent_nox::config::auto_downloader_download_repacks: true
 qbittorrent_nox::config::auto_downloader_smart_episode_filter: 's(\\d+)e(\\d+), (\\d+)x(\\d+), "(\\d{4}[.\\-\\d{1,2}[.\\-\\d{1,2})", "(\\d{1,2}[.\\-\\d{1,2}[.\\-\\d{4})"'
 
