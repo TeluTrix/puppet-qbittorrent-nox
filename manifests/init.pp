@@ -21,12 +21,20 @@ class qbittorrent_nox (
     ensure => $ensure,
   }
 
-  file { "/home/${system_user}/.config/":
+  file { "/home/${system_user}":
     ensure => 'directory',
+    owner  => $system_user,
+  }
+
+  file { "/home/${system_user}/.config/":
+    ensure  => 'directory',
+    owner   => $system_user,
+    require => File["/home/${system_user}"],
   }
 
   file { "/home/${system_user}/.config/qBittorrent":
     ensure  => 'directory',
+    owner   => $system_user,
     require => File["/home/${system_user}/.config/"],
   }
 }
