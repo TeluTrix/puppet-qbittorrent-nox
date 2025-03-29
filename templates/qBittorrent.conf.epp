@@ -31,7 +31,7 @@ MigrationVersion=<%= $qbittorrent_nox::config::meta_migration_version %>
 General\Locale=<%= $qbittorrent_nox::config::general_locale %>
 MailNotification\req_auth=<%= $qbittorrent_nox::config::mail_notification_req_auth %>
 WebUI\AuthSubnetWhitelist=<%= $qbittorrent_nox::config::webui_auth_subnet_whitelist %>
-WebUI\Password_PBKDF2="@ByteArray(<%= $password %>)"
+WebUI\Password_PBKDF2="<%= $password %>"
 
 [RSS]
 AutoDownloader\DownloadRepacks=<%= $qbittorrent_nox::config::auto_downloader_download_repacks %>

@@ -41,7 +41,7 @@ class qbittorrent_nox::config (
     ensure  => 'file',
     owner   => $qbittorrent_nox::system_user,
     content => epp('qbittorrent_nox/qBittorrent.conf.epp', {
-        'password'  => $webui_password_pbkdf2['password_hex'],
+        'password'  => "@ByteArray(${webui_password_pbkdf2['salt_hex']}:${webui_password_pbkdf2['password_hex']}",
     }),
   }
 }
